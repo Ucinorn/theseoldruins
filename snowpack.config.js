@@ -7,4 +7,7 @@ module.exports = {
   buildOptions: {
     baseUrl: '',
   },
+  devOptions: {
+    port: 8081
+  }
 }

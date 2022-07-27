@@ -14,5 +14,8 @@
     "snowpack": "^3.0.11",
     "tailwindcss": "^2.0.2"
   },
-  "homepage": "https://ucinorn.github.io/theseoldruins"
+  "homepage": "https://ucinorn.github.io/theseoldruins",
+  "dependencies": {
+    "alpinejs": "^3.7.0"
+  }
 }
