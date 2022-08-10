@@ -35,13 +35,13 @@ export const data = () => ({
     // we match buildings to grid positions using their index
     buildings: {},
 
-
     // resources used to build and explore
-    energy: 0,
-    mud: 0,
-    bricks: 0,
-    slag: 0,
-    iron: 0,
+    resources: {
+        energy: 0,
+        mud: 0,
+        slag: 0,
+        water: 0,
+    }
     getGrid(index) {
         // get grid data from the array based on its index
         let grid = false
@@ -57,9 +57,8 @@ export const data = () => ({
     load() {
         var loadeddata = localStorage.getItem('thisoldruin')
         if (!loadeddata || loadeddata == null) return console.warn('Loading Failed')
-        let text = LZString.decompressFromBase64(loadeddata)
-        if (!text) return console.warn('Loading Failed')
-        const l = JSON.parse(text)
+        if (!loadeddata) return console.warn('Loading Failed')
+        const l = JSON.parse(loadeddata)
         if ('gameData' in l) {
             this.gameData = Object.assign({}, l.gameData)
         }
@@ -73,14 +72,12 @@ export const data = () => ({
             currencies: JSON.parse(JSON.stringify(currencies)),
         }
         let text = JSON.stringify(saveddata)
-        let compressed = LZString.compressToBase64(text)
-        localStorage.setItem(`thisoldruin`, compressed)
+        localStorage.setItem(`thisoldruin`, text)
     },
 
     interval: false,
     baseTickrate: 100,
     currentTick: 0,
-
 
     startLoop() {
         var self = this;
